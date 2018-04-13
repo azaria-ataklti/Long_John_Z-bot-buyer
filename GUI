@@ -1,0 +1,72 @@
+from tkinter import *
+
+# Use this as a flag to indicate if the box was clicked.
+global clicked
+global sizeClicked
+global nameClicked
+clicked = False
+sizeClicked = False
+nameClicked = False
+
+# Delete the contents of the Entry widget. Use the flag
+# so that this only happens the first time.
+def callback(event):
+    global clicked
+    if (clicked == False):
+        modelNumber.delete(0, END)         #
+        modelNumber.config(fg = "black")   # Change the colour of the text here.
+        clicked = True
+def sizeCallback(event):
+    global sizeClicked
+    if (sizeClicked == False):
+        size.delete(0, END)
+        size.config(fg="black")
+        sizeClicked = True
+def nameCallback(event):
+    global nameClicked
+    if (nameClicked == False):
+        name.delete(0, END)
+        name.config(fg="black")
+        nameClicked = True
+
+master = Tk()
+modelNumber = Entry(master)
+size = Entry(master)
+name = Entry(master)
+
+
+modelNumber.config(fg = "gray")
+modelNumber.bind("<Button-1>", callback)
+modelNumber.insert(0, "Model Number")
+
+size.config(fg = "gray")
+size.bind("<Button-1>", sizeCallback)
+size.insert(0, "Size")
+
+name.config(fg = "gray")
+name.bind("<Button-1>", nameCallback)
+name.insert(0, "Brand")
+
+
+modelNumber.pack()
+size.pack()
+name.pack()
+
+
+modelNumber.focus_set()
+
+def callback():
+    global m
+    global s
+    global n
+
+    m = modelNumber.get() # This is the text you may want to use later
+    s = size.get()
+    n = name.get()
+    print(m, s, n)
+
+b = Button(master, text = "Get your link!", width = 10, command = callback)
+b.pack()
+
+mainloop()
+
