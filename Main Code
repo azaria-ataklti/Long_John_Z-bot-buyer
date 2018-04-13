@@ -1,0 +1,24 @@
+# Base URL =  http://www.adidas.com/us/BB9043.html?forceSelSize=BB9043_600
+# https://www.adidas.com/us/nmd_racer-primeknit-shoes/CQ2441.html?forceSelSize=CQ2441_610
+print("Shoe name should replace spaces with dashes '-'")
+
+
+def URLGen(name, model, size):
+    BaseSize = 570
+    # Base Size is for Shoe Size 6.5
+    ShoeSize = size - 6
+    ShoeSize = ShoeSize * 20
+    RawSize = ShoeSize + BaseSize
+    ShoeSizeCode = int(RawSize)
+    URL = 'http://www.adidas.com/us/' + str(name) + "/" + str(model) + '.html?forceSelSize=' + str(model) + '_' + str(
+        ShoeSizeCode)
+    return URL
+
+
+Name = input('Shoe name: ')
+Model = input('Model #: ')
+Size = float(input('Size: '))
+
+URL = URLGen(Name, Model, Size)
+
+print(URL)
