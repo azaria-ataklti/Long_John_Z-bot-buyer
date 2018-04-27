@@ -1,0 +1,16 @@
+def CheckStock(url):
+	headers = {'User-Agent': random.choice(UserAgents)}
+	RawHTML = requests.get(url, headers=headers)
+	Page = bs4.BeautifulSoup(RawHTML.text, "lxml")
+	ListOfRawSizes = Page.select('.size-dropdown-block')
+	Sizes = str(ListOfRawSizes[0].getText()).replace('\t', '')
+	Sizes = Sizes.replace('\n\n', ' ')
+	Sizes = Sizes.split()
+	Sizes.remove('Select')
+	Sizes.remove('size')
+	for size in Sizes:
+		print(str(model) + ' Size: ' + str(size) + ' Available')
+
+def Main(model, size):
+	url = URLGen(model, size)
+	CheckStock(url, model)
